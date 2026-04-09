@@ -41,4 +41,5 @@ class Produto {
                 System.out.println("Perecível vendido. Validade: " + this.dataValidade);
             }
          }
+    } 
 }
