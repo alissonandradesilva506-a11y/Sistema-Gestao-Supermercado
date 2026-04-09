@@ -1,0 +1,44 @@
+class Produto {
+    private String nome;
+    private double preco;
+    private int estoque;
+    
+    public Produto(String n, double p, int e){
+        this.nome = n;
+        this.preco = p;
+        this.estoque = e;  
+    }
+    
+    public void adicionarEstoque(int qtd){
+        estoque += qtd;
+    }
+    
+    public void vender(int qtd){
+        if(estoque >= qtd) {
+            estoque -= qtd;
+            System.out.println("Vendido " + qtd + " unidades de " + this.nome);
+        } else {
+            System.out.println("Estoque insuficiente para " + this.nome);
+    }
+    
+    class Perecivel extends Produto{
+        private String dataValidade;
+        
+        public Perecivel(String n, double p, int e, String data) {
+            this.dataValidade = data;
+            super(n, p, e);
+        }
+        
+        @Override
+        public void vender(int qtd){
+            System.out.println("Verificando validade do produto: " + this.nome + "...");
+        
+        
+            if(this.estoque < qtd){
+                System.out.println("Erro: Estoque insuficiente. Perecível precisa de reposição.");
+            } else {
+                this.estoque -= qtd;
+                System.out.println("Perecível vendido. Validade: " + this.dataValidade);
+            }
+         }
+}
